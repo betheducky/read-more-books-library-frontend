@@ -6,5 +6,5 @@ import { MyBookListsComponent } from './my-book-lists/my-book-lists.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: LibraryHomeComponent },
-  { path: 'my-lists', component: MyBookListsComponent },
+  { path: 'my-library', component: MyBookListsComponent },
 ];

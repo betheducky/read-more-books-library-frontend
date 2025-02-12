@@ -3,12 +3,25 @@
     <mat-label>Search Books</mat-label>
     <input
       matInput
-      [(ngModel)]="query"
+      [(ngModel)]="searchQuery"
       (keyup.enter)="searchBooks()"
       placeholder="Search by title or author..."
     />
   </mat-form-field>
 </div>
-<div class="search-container">
-
+<div class="results-container">
+    @if(books.length === 0 && !searchQuery){
+        <div>No results found for "{{searchQuery}}"! Try a differnet search.</div>
+    }
+    <div class="book-grid">
+        @for(book of books; track book){
+            <mat-card class="book-card">
+                @if(book.coverUrl){
+                    <img [src]="book.coverUrl" alt="Book Cover">
+                }
+                <mat-card-title>{{book.title}}</mat-card-title>
+                <mat-card-subtitle>{{book.author}}</mat-card-subtitle>
+            </mat-card>
+        }
+    </div>
 </div>
