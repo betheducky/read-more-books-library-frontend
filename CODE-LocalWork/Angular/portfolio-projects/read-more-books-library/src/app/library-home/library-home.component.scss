@@ -1,7 +1,7 @@
 #home-container {
     background-color: white;
     margin: 3rem auto 0;
-    padding: 0;
+    padding: 0 0 2rem;
     box-sizing: border-box;
     border-radius: 1rem;
     min-height: 40%;
@@ -17,9 +17,21 @@ h1 {
     font-size: var(--headingFontSize);
 }
 
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+#home-container mat-divider {
+    height: 1.25rem;
+}
+
 a {
     font-size: var(--linkFontSize);
     text-decoration: none;
     margin: 1rem .5rem;
     padding: 4px;
 }
+

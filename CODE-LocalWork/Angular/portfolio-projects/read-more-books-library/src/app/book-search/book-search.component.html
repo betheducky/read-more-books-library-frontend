@@ -5,20 +5,24 @@
       matInput
       [(ngModel)]="searchQuery"
       (keyup.enter)="searchBooks()"
-      placeholder="Search by title or author..."
+      placeholder="Title or author..."
     />
   </mat-form-field>
-  <button mat-mini-fab>
+  <button mat-mini-fab (click)="searchBooks()">
     <mat-icon>search</mat-icon>
   </button>
 </div>
 <div class="results-container">
   @if(noResultsFound){
-  <div>No results found for "{{ searchQuery }}"! Try a differnet search.</div>
+  <div id="result-msg">
+    <p>No results found for </p>
+    <p>"{{ searchQuery }}"</p>
+    <p>Try a differnet search.</p>
+  </div>
   }
-  <div class="book-grid">
+  <div id="book-grid">
     @for(book of books; track book){
-    <mat-card class="book-card">
+    <mat-card id="book-card">
       <mat-card-header>
         <div mat-card-avatar>
           <img
@@ -30,7 +34,7 @@
         <mat-card-subtitle>{{ book.author }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <p>Published:</p>
+        <p>Published:{{book.yearPublished}}</p>
       </mat-card-content>
     </mat-card>
     }
