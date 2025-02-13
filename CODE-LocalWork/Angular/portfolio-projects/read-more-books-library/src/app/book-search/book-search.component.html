@@ -8,20 +8,31 @@
       placeholder="Search by title or author..."
     />
   </mat-form-field>
+  <button mat-mini-fab>
+    <mat-icon>search</mat-icon>
+  </button>
 </div>
 <div class="results-container">
-    @if(books.length === 0 && !searchQuery){
-        <div>No results found for "{{searchQuery}}"! Try a differnet search.</div>
+  @if(noResultsFound){
+  <div>No results found for "{{ searchQuery }}"! Try a differnet search.</div>
+  }
+  <div class="book-grid">
+    @for(book of books; track book){
+    <mat-card class="book-card">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <img
+            [src]="book.coverUrl || 'assets/default-cover.jpg'"
+            alt="Book Cover"
+          />
+        </div>
+        <mat-card-title>{{ book.title }}</mat-card-title>
+        <mat-card-subtitle>{{ book.author }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Published:</p>
+      </mat-card-content>
+    </mat-card>
     }
-    <div class="book-grid">
-        @for(book of books; track book){
-            <mat-card class="book-card">
-                @if(book.coverUrl){
-                    <img [src]="book.coverUrl" alt="Book Cover">
-                }
-                <mat-card-title>{{book.title}}</mat-card-title>
-                <mat-card-subtitle>{{book.author}}</mat-card-subtitle>
-            </mat-card>
-        }
-    </div>
+  </div>
 </div>
