@@ -5,6 +5,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { PageEvent } from '@angular/material/paginator';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -17,6 +19,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    MatPaginatorModule,
     MatCardModule,
     FormsModule,
     HttpClientModule,
@@ -27,7 +30,23 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 export class BookSearchComponent {
   searchQuery: string = '';
   noResultsFound: boolean = false;
-  books: { title: string; author: string; coverUrl: string, yearPublished: string }[] = [];
+  queryComplete: boolean = false;
+  books: {
+    title: string;
+    author: string;
+    coverUrl: string;
+    yearPublished: string;
+    linkToMore: string;
+  }[] = [];
+  paginatedBooks: {
+    title: string;
+    author: string;
+    coverUrl: string;
+    yearPublished: string;
+    linkToMore: string;
+  }[] = [];
+  currentPage: number = 0;
+  pageSize: number = 10;
 
   constructor(private http: HttpClient) {}
 
@@ -43,19 +62,35 @@ export class BookSearchComponent {
       console.log(data.docs);
       this.books = data.docs.map((doc: any) => ({
         title: doc.title,
-        author: doc.author_name ? doc.author_name.join(', ') : 'unknown',
+        author: doc.author_name ? doc.author_name.join(', ') : 'Author Unknown',
         coverUrl: doc.cover_i
           ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`
           : '',
         yearPublished: doc.first_publish_year,
+        linkToMore: `https://www.google.com/search?q=${encodeURIComponent(
+          doc.title + ' ' + doc.author_name
+        )}`,
       }));
-      if (this.books.length === 0) {
-        this.noResultsFound = true;
-      }
+      this.paginateResults();
+      console.log(this.currentPage * this.pageSize, this.paginatedBooks);
+      this.noResultsFound = this.books.length === 0;
+      this.queryComplete = true;
     });
 
-   
-
-    console.log('Search executed!', query, );
+    console.log('Search executed!', query);
   }
+
+  onPageChange(event: PageEvent): void {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.paginateResults();
+  }
+
+  paginateResults(): void {
+    const startIndex = this.currentPage * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.paginatedBooks = this.books.slice(startIndex, endIndex);
+  }
+
+  linkToMoreInfo(): void {}
 }
