@@ -10,6 +10,7 @@ import { PageEvent } from '@angular/material/paginator';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { BookListService } from '../../services/book-list.service';
 
 @Component({
   selector: 'app-book-search',
@@ -48,10 +49,13 @@ export class BookSearchComponent {
   currentPage: number = 0;
   pageSize: number = 10;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private bookListService: BookListService) {}
 
   searchBooks(): void {
     const query = this.searchQuery;
+    function formatLineValue(lineValue: string[], limit: number = 20) {
+      return lineValue.length > limit ? lineValue.slice(0, limit) + '...' : lineValue;
+    }
     if (!query.trim() || query === '') {
       window.alert('Please enter a search query!');
       return;
@@ -61,8 +65,12 @@ export class BookSearchComponent {
     this.http.get<any>(url).subscribe((data) => {
       console.log(data.docs);
       this.books = data.docs.map((doc: any) => ({
-        title: doc.title,
-        author: doc.author_name ? doc.author_name.join(', ') : 'Author Unknown',
+        title: doc.title
+        ? formatLineValue(doc.title)
+        : 'Title Unknown',
+        author: doc.author_name
+          ? formatLineValue(doc.author_name.join(', '))
+          : 'Author Unknown',
         coverUrl: doc.cover_i
           ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`
           : '',
@@ -92,5 +100,7 @@ export class BookSearchComponent {
     this.paginatedBooks = this.books.slice(startIndex, endIndex);
   }
 
-  linkToMoreInfo(): void {}
+  addToBookList(book: any): void {
+    this.bookListService.addBook(book);
+  }
 }

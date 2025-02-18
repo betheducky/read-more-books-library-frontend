@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RouterLinkActive } from '@angular/router';
-import { BookSearchComponent } from '../book-search/book-search.component';
+import { BookSearchComponent } from '../../components/book-search/book-search.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDivider } from '@angular/material/divider';
 
