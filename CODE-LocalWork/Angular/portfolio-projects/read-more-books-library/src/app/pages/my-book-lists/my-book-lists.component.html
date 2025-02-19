@@ -3,28 +3,28 @@
     <a href="/home">Search</a>
     <p>Select a title to read to its synopsis.</p>  
     <div id="list-grid">
-        @if(myBooks.length === 0){
+        @if(myPaginatedBooks.length === 0){
         <div class="result-msg">
           <p>No books in your list yet!</p>
         </div>
-        } @for(book of myBooks; track book){
+        } @for(myPaginatedBook of myPaginatedBooks; track myPaginatedBook){
         <mat-card id="list-card">
           <mat-card-header>
             <div mat-card-avatar>
-              <a [href]="book.linkToMore" target="_blank"
+              <a [href]="myPaginatedBook.linkToMore" target="_blank"
                 ><img
-                  [src]="book.coverUrl || 'assets/default-cover.png'"
+                  [src]="myPaginatedBook.coverUrl || 'assets/default-cover.png'"
                   alt="Book Cover"
               /></a>
             </div>
           </mat-card-header>
           <mat-card-content
-            ><mat-card-title>{{ book.title }}</mat-card-title>
-            <mat-card-subtitle>{{ book.author }}</mat-card-subtitle>
-            <p>Published:{{ book.yearPublished }}</p>
+            ><mat-card-title>{{ myPaginatedBook.title }}</mat-card-title>
+            <mat-card-subtitle>{{ myPaginatedBook.author }}</mat-card-subtitle>
+            <p>Published:{{ myPaginatedBook.yearPublished }}</p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button (click)="removeBook(book.title)">Remove from List</button>
+            <button mat-button (click)="removeBook(myPaginatedBook.title)">Remove from List</button>
           </mat-card-actions>
         </mat-card>
         }

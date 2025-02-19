@@ -2,31 +2,37 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BookListService {
 
-  private bookList: any[] = [];
-  private bookListSubject = new BehaviorSubject<any[]>(this.bookList);
+  private storageKey: string = 'myBookList';
+  private bookListSubject = new BehaviorSubject<any[]>(this.loadBooksFromLocalStorage());
   bookList$ = this.bookListSubject.asObservable();
 
+  private loadBooksFromLocalStorage(): any[] {
+    const savedBooks = localStorage.getItem(this.storageKey);
+    return savedBooks ? JSON.parse(savedBooks) : [];
+  }
+
+  private saveBooksToStorage(books: any[]): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(books));
+  }
+
   addBook(book: any): void {
-    if (!this.bookList.some((b) => b.title === book.title && b.author === book.author)){
-      this.bookList.push(book);
-      this.bookListSubject.next([...this.bookList])
-    }
+   
+    const currentBooks = this.bookListSubject.value;
+    const updatedBooks = [...currentBooks, book];
+    this.bookListSubject.next(updatedBooks);
+    this.saveBooksToStorage(updatedBooks);
+    console.log('addBook() triggered in service...', [...updatedBooks]);
   }
 
-  getBooks(): any[] {
-    return this.bookList;
+  removeBook(title: string): void {
+    const updatedBooks = this.bookListSubject.value.filter(book => book.title !== title);
+    this.bookListSubject.next(updatedBooks);
+    this.saveBooksToStorage(updatedBooks);
   }
 
-  removeBook(title: any[]): void {
-    this.bookList = this.bookList.filter((book) => book.title !== title);
-    this.bookListSubject.next([...this.bookList]);
-  }
-
-  constructor() { }
+  constructor() {}
 }
-
-// Troubleshoot removeBook method across app

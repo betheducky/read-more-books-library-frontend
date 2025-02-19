@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { BookListService } from '../../services/book-list.service';
+
 
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { PageEvent } from '@angular/material/paginator';
-
-import { BookListService } from '../../services/book-list.service';
-
 
 @Component({
   selector: 'app-my-book-lists',
@@ -45,13 +44,15 @@ export class MyBookListsComponent implements OnInit {
   constructor(private bookListService: BookListService) {}
 
   ngOnInit(): void {
-      this.bookListService.bookList$.subscribe((books) => {
-        this.myBooks = books;
-      })
+      this.bookListService.bookList$.subscribe((bookList: any[]) => {
+        this.myBooks = bookList;
+      });
+      this.paginateResults();
+      console.log("Trying to access 'bookList'...", [...this.myBooks]);
   }
 
-  removeBook(book: any[]): void {
-    this.bookListService.removeBook(book.title);
+  removeBook(title: string): void {
+    this.bookListService.removeBook(title);
   }
 
   onPageChange(event: PageEvent): void {

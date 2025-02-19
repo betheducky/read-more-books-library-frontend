@@ -101,6 +101,7 @@ export class BookSearchComponent {
   }
 
   addToBookList(book: any): void {
+    console.log("adding book in template function...", book);
     this.bookListService.addBook(book);
   }
 }
