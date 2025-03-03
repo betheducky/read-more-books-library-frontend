@@ -1,0 +1,15 @@
+<nav>
+  @if(!authService.isAuthenticated()){
+  <button mat-button (click)="testFunc()">Login</button>
+  <mat-divider [vertical]="true"></mat-divider>
+  <button mat-button (click)="testFunc()">Register</button>
+  @if(hasLocallyStoredBooks){
+  <mat-divider [vertical]="true"></mat-divider>
+  <button mat-button routerLink="/saved-books">Saved Books</button>
+  } } @if(authService.isAuthenticated()){
+  <mat-divider [vertical]="true"></mat-divider>
+  <button mat-button (click)="testFunc()">My Book Lists</button>
+  <mat-divider [vertical]="true"></mat-divider>
+  <button mat-button (click)="testFunc()">Logout</button>
+  }
+</nav>
