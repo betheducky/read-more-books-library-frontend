@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormGroup,
@@ -6,6 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDivider } from '@angular/material/divider';
@@ -16,11 +18,11 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [ReactiveFormsModule, MatDivider, MatDividerModule],
+  imports: [ReactiveFormsModule, MatDivider, MatDividerModule, RouterModule],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit {
   view: 'login' | 'register' | 'forgot' = 'forgot';
 
   message: string | null = null;
@@ -34,7 +36,8 @@ export class AuthComponent {
     private fb: FormBuilder,
     private authService: AuthServiceService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private route: ActivatedRoute,
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -53,8 +56,16 @@ export class AuthComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      if (params['view']) {
+        this.view = params['view'];
+      }
+    });
+  }
+
   switchView(view: 'login' | 'register' | 'forgot') {
-    this.view = view;
+    this.router.navigate([], { queryParams: { view } });
   }
 
   login(): void {

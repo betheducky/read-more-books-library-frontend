@@ -42,6 +42,11 @@ export class SiteNavComponent implements OnInit{
     console.log('Books in local storage:', this.books);
   }
 
+  logMeOut(): void {
+    this.authService.logout();
+    console.log("User has been logged out!");
+  }
+
   testFunc(): void {
     console.log('Button works!');
   }

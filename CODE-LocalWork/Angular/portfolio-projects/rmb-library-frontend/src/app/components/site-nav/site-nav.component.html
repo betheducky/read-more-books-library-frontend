@@ -1,15 +1,15 @@
 <nav>
   @if(!authService.isAuthenticated()){
-  <button mat-button routerLink="/authorize">Login</button>
+  <button mat-button [routerLink]="['/authorize']" [queryParams]="{view: 'login'}">Login</button>
   <mat-divider [vertical]="true"></mat-divider>
-  <button mat-button routerLink="/authorize">Register</button>
+  <button mat-button [routerLink]="['/authorize']" [queryParams]="{view: 'register'}">Register</button>
   @if(hasLocallyStoredBooks){
   <mat-divider [vertical]="true"></mat-divider>
-  <button mat-button routerLink="/saved-books">Saved Books</button>
+  <button mat-button [routerLink]="['/saved-books']">Saved Books</button>
   } } @if(authService.isAuthenticated()){
   <mat-divider [vertical]="true"></mat-divider>
   <button mat-button (click)="testFunc()">My Book Lists</button>
   <mat-divider [vertical]="true"></mat-divider>
-  <button mat-button (click)="testFunc()">Logout</button>
+  <button mat-button (click)="logMeOut()">Logout</button>
   }
 </nav>

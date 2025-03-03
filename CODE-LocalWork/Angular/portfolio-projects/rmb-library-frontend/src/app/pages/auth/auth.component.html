@@ -1,7 +1,8 @@
-<div class="primary-container">
+<div id="auth-container" class="primary-container">
   @if(view === 'login') {
   <ng-container>
     <h1>Log<span id="title-span">in</span></h1>
+    <mat-divider class="title-divider"></mat-divider>
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <p>Enter your credentials to login.</p>
       <div>
@@ -18,13 +19,29 @@
         Login
       </button>
     </form>
-    @if(loginForm.invalid){
+    @if(!loginForm.valid){
     <p class="error-msg">{{ errorMessage }}</p>
     }
+    <button class="bottom-nav-btns"
+      mat-button
+      [routerLink]="['/authorize']"
+      [queryParams]="{ view: 'register' }"
+    >
+      Register
+    </button>
+    <button class="bottom-nav-btns"
+      mat-button
+      [routerLink]="['/authorize']"
+      [queryParams]="{ view: 'forgot' }"
+    >
+      Forgot Password
+    </button>
+    <button class="bottom-nav-btns" mat-button routerLink="/home">Search</button>
   </ng-container>
   } @if(view === 'register') {
   <ng-container>
     <h1><span id="title-span">R</span>egister</h1>
+    <mat-divider class="title-divider"></mat-divider>
     <form [formGroup]="registerForm" (ngSubmit)="register()">
       <p>Enter your email and choose a password to register.</p>
       <div>
@@ -47,25 +64,34 @@
         <input type="password" formControlName="confirmPassword" required />
       </div>
       <mat-divider></mat-divider>
-      <button mat-button [disabled]="registerForm.invalid" type="submit">
-        Login
+      <button mat-button [disabled]="!registerForm.valid" type="submit">
+        Register
       </button>
     </form>
-    @if(registerForm.invalid){
+    @if(!registerForm.valid){
     <p class="error-msg">{{ errorMessage }}</p>
     }
+    <button class="bottom-nav-btns"
+      mat-button
+      [routerLink]="['/authorize']"
+      [queryParams]="{ view: 'login' }"
+    >
+      Login
+    </button>
+    <button class="bottom-nav-btns" mat-button routerLink="/home">Search</button>
   </ng-container>
   } @if(view === 'forgot') {
   <ng-container>
     <h1><span id="title-span">Reset</span> Your Password</h1>
-    <p>Enter your email to receive a password reset link.</p>
+    <mat-divider class="title-divider"></mat-divider>
     <form (submit)="resetPassword()">
+      <p>Enter your email to receive a password reset link.</p>
       <div>
         <label for="email">Email:</label>
         <input type="email" formControlName="forgotPasswordForm" required />
       </div>
       <mat-divider></mat-divider>
-      <button mat-button type="submit" [disabled]="forgotPasswordForm.invalid">
+      <button mat-button type="submit" [disabled]="!forgotPasswordForm.valid">
         Send Reset Link
       </button>
     </form>
@@ -74,6 +100,13 @@
     } @if(errorMessage) {
     <p class="error-msg">{{ errorMessage }}</p>
     }
+    <button class="bottom-nav-btns"
+      mat-button
+      [routerLink]="['/authorize']"
+      [queryParams]="{ view: 'login' }"
+    >
+      Login
+    </button>
   </ng-container>
   }
 </div>

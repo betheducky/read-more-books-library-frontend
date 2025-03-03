@@ -10,6 +10,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { PageEvent } from '@angular/material/paginator';
 import { Book } from '../../models/book-model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-my-book-lists',
@@ -18,7 +19,8 @@ import { Book } from '../../models/book-model';
     MatCardModule,
     MatPaginatorModule,
     MatButtonModule,
-    SiteNavComponent
+    SiteNavComponent,
+    RouterLink
   ],
   templateUrl: './my-book-lists.component.html',
   styleUrl: './my-book-lists.component.scss'
