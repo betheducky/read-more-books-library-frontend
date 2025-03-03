@@ -1,6 +1,14 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormGroup,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { MatDividerModule } from '@angular/material/divider';
+import { MatDivider } from '@angular/material/divider';
 
 import { AuthServiceService } from '../../services/auth-service/auth-service.service';
 import { HttpClient } from '@angular/common/http';
@@ -8,7 +16,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MatDivider, MatDividerModule],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',
 })

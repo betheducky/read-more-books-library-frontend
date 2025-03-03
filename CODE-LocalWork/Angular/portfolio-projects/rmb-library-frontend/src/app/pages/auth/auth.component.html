@@ -8,10 +8,12 @@
         <label>Email:</label>
         <input type="email" formControlName="email" required />
       </div>
+      <mat-divider></mat-divider>
       <div>
         <label>Password:</label>
         <input type="password" formControlName="password" required />
       </div>
+      <mat-divider></mat-divider>
       <button mat-button [disabled]="loginForm.invalid" type="submit">
         Login
       </button>
@@ -29,18 +31,22 @@
         <label>Name:</label>
         <input type="text" formControlName="name" required />
       </div>
+      <mat-divider></mat-divider>
       <div>
         <label>Email:</label>
         <input type="email" formControlName="email" required />
       </div>
+      <mat-divider></mat-divider>
       <div>
         <label>Password:</label>
         <input type="password" formControlName="password" required />
       </div>
+      <mat-divider></mat-divider>
       <div>
         <label>Confirm Password:</label>
         <input type="password" formControlName="confirmPassword" required />
       </div>
+      <mat-divider></mat-divider>
       <button mat-button [disabled]="registerForm.invalid" type="submit">
         Login
       </button>
@@ -58,6 +64,7 @@
         <label for="email">Email:</label>
         <input type="email" formControlName="forgotPasswordForm" required />
       </div>
+      <mat-divider></mat-divider>
       <button mat-button type="submit" [disabled]="forgotPasswordForm.invalid">
         Send Reset Link
       </button>
