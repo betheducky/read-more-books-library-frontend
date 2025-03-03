@@ -1,0 +1,54 @@
+.search-container {
+  text-align: center;
+  margin: 0 auto;
+}
+
+mat-form-field {
+  margin: 10px;
+}
+
+.search-container button {
+  background-color: #70ae6e;
+  color: white;
+}
+
+.result-msg {
+  text-align: center;
+  margin: auto;
+  width: 100%;
+}
+
+#book-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: inherit;
+  overflow: hidden;
+}
+
+#book-card {
+  height: 23rem;
+  width: 13rem;
+  margin: 5px;
+  display: flex;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+#book-card img {
+  width: auto;
+  height: 200px;
+  object-fit: contain;
+}
+
+mat-card-content {
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+mat-card-content * {
+  padding: 1px;
+}

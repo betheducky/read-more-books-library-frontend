@@ -1,0 +1,25 @@
+
+
+h1 {
+    margin-top: 5rem;
+    font-size: var(--headingFontSize);
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+#home-container mat-divider {
+    height: 1.25rem;
+}
+
+a {
+    font-size: var(--linkFontSize);
+    text-decoration: none;
+    margin: 1rem .5rem;
+    padding: 4px;
+}
+
