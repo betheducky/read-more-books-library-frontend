@@ -1,0 +1,53 @@
+h1 {
+    margin-top: 5rem;
+    font-size: var(--headingFontSize);
+}
+
+a {
+    font-size: var(--linkFontSize);
+    text-decoration: none;
+    margin: 1rem .5rem;
+    padding: 4px;
+}
+
+.result-msg {
+    text-align: center;
+    margin: auto;
+    width: 100%;
+  }
+  
+  #list-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: inherit;
+    overflow: hidden;
+  }
+  
+  #list-card {
+    height: 23rem;
+    width: 13rem;
+    margin: 5px;
+    display: flex;
+    align-items: flex-start;
+    overflow: hidden;
+  }
+  
+  #list-card img {
+    width: auto;
+    height: 200px;
+    object-fit: contain;
+  }
+  
+  mat-card-content {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+  }
+  
+  mat-card-content * {
+    padding: 1px;
+  }

@@ -11,6 +11,8 @@ export class BookListService {
 
   private storageKey: string = 'myBookList';
   private apiUrl: string = `/api/book-list`;
+  private bookSubject = new BehaviorSubject<Book[]>(this.loadBooksFromLocalStorage());
+  books$ = this.bookSubject.asObservable();
 
   constructor(private http:HttpClient, private authService: AuthServiceService){}
 
@@ -18,8 +20,7 @@ export class BookListService {
     if(this.authService.isLoggedIn()) {
       return this.http.get<Book[]>(this.apiUrl);
     } else {
-      const locallyStoredBooks = sessionStorage.getItem(this.storageKey);
-      return of(locallyStoredBooks ? JSON.parse(locallyStoredBooks) : [])
+      return this.books$;
     }
   }
 
@@ -30,6 +31,10 @@ export class BookListService {
       const books = this.getLocallyStoredBooks();
       books.push(book);
       sessionStorage.setItem(this.storageKey, JSON.stringify(books));
+      localStorage.setItem(this.storageKey, JSON.stringify(books));
+
+      this.bookSubject.next(books);
+
       return of(null);
     }
   }
@@ -41,6 +46,10 @@ export class BookListService {
     } else {
       const books = this.getLocallyStoredBooks().filter((b) => b.title !== title);
       sessionStorage.setItem(this.storageKey, JSON.stringify(books));
+      localStorage.setItem(this.storageKey, JSON.stringify(books));
+
+      this.bookSubject.next(books);
+
       return of(null);
     }
   }

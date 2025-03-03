@@ -1,0 +1,58 @@
+<div class="auth-container">
+  @if(view === 'login') {
+  <ng-container>
+    <h1>Login</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <label>Email:</label>
+      <input type="email" formControlName="email" required />
+      <label>Password:</label>
+      <input type="password" formControlName="password" required />
+      <button mat-button [disabled]="loginForm.invalid" type="submit">
+        Login
+      </button>
+    </form>
+    @if(loginForm.invalid){
+    <p class="error-msg">{{ errorMessage }}</p>
+    }
+  </ng-container>
+  } @if(view === 'register') {
+  <ng-container>
+    <h1>Register</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <label>Name:</label>
+      <input type="text" formControlName="name" required />
+      <label>Email:</label>
+      <input type="email" formControlName="email" required />
+      <label>Password:</label>
+      <input type="password" formControlName="password" required />
+      <label>Confirm Password:</label>
+      <input type="password" formControlName="confirmPassword" required />
+      <button mat-button [disabled]="registerForm.invalid" type="submit">
+        Login
+      </button>
+    </form>
+    @if(registerForm.invalid){
+    <p class="error-msg">{{ errorMessage }}</p>
+    }
+  </ng-container>
+  } @if(view === 'forgot') {
+  <ng-container>
+    <h1>Reset Your Password</h1>
+    <p>Enter your email to receive a password reset link.</p>
+    <form (submit)="resetPassword()">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        formControlName="forgotPasswordForm"
+        required
+      />
+      <button mat-button type="submit" [disabled]="forgotPasswordForm.invalid">Send Reset Link</button>
+    </form>
+    @if(message){
+    <p class="success-msg">{{ message }}</p>
+    } @if(errorMessage) {
+    <p class="error-msg">{{ errorMessage }}</p>
+    }
+  </ng-container>
+  }
+</div>
