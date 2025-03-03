@@ -13,5 +13,6 @@ export const routes: Routes = [
     component: MyBookListsComponent,
     canActivate: [authGuard],
   },
-  {path: 'saved-books', component: SavedBooksComponent}
+  {path: 'saved-books', component: SavedBooksComponent},
+{path: 'authorize', component: AuthComponent}
 ];

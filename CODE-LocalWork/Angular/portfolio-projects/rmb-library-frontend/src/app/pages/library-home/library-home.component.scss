@@ -1,11 +1,9 @@
-
-
 h1 {
     margin-top: 5rem;
-    margin-bottom: .25rem;
+    margin-bottom: 0.25rem;
     font-size: var(--headingFontSize);
     font-weight: 500;
-}
+  }
 
 h3 {
     width: 80%;
@@ -22,15 +20,6 @@ h3:last-of-type {
 #title-span {
     color: var(--themeAccentColor);
     border-bottom: 4px dotted #acadb7;
-}
-
-
-button {
-    font-size: var(--linkFontSize);
-    text-decoration: none;
-    margin: .75rem .5rem;
-    padding: 4px;
-    color: #a7a8a7 !important;
 }
 
 .primary-container div {

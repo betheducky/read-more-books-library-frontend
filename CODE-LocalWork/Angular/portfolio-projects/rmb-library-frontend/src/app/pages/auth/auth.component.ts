@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './auth.component.scss',
 })
 export class AuthComponent {
-  view: 'login' | 'register' | 'forgot' = 'login';
+  view: 'login' | 'register' | 'forgot' = 'forgot';
 
   message: string | null = null;
   errorMessage: string | null = null;

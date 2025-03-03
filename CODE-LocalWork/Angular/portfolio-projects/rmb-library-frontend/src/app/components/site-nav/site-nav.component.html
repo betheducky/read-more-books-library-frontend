@@ -1,8 +1,8 @@
 <nav>
   @if(!authService.isAuthenticated()){
-  <button mat-button (click)="testFunc()">Login</button>
+  <button mat-button routerLink="/authorize">Login</button>
   <mat-divider [vertical]="true"></mat-divider>
-  <button mat-button (click)="testFunc()">Register</button>
+  <button mat-button routerLink="/authorize">Register</button>
   @if(hasLocallyStoredBooks){
   <mat-divider [vertical]="true"></mat-divider>
   <button mat-button routerLink="/saved-books">Saved Books</button>
