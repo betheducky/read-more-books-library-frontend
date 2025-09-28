@@ -1,5 +1,33 @@
+@mixin respond-to($media) {
+    @if $media == 'mobile' {
+        @media (max-width: 375px){
+            @content;
+        }
+    } @else if $media == 'tablet' {
+        @media (max-width: 768px) {
+            @content;
+        }
+    } @else if $media == 'large-tablet' {
+        @media (max-width: 1280px) {
+            @content;
+        }
+    }
+}
+
 #auth-container {
   width: 40% !important;
+
+  @include respond-to('large-tablet') {
+    width: 60% !important;
+  }
+
+  @include respond-to('tablet') {
+    width: 90% !important;
+  }
+
+  @include respond-to('mobile') {
+    width: 90% !important;
+  }
 }
 
 h1 {
@@ -28,6 +56,17 @@ form {
   width: 60%;
   margin: 0;
   padding: 1rem 3rem 0;
+
+  @include respond-to("tablet") {
+    min-width: 75%;
+    width: 18rem;
+    padding: 1rem 0 0;
+  }
+
+  @include respond-to("mobile") {
+    width: 90%;
+    padding: 1rem 0 0;
+  }
 }
 
 form div {
@@ -46,6 +85,10 @@ form label {
 form input {
   margin: 0.25rem 0;
   font-size: 1.125rem;
+
+  @include respond-to("tablet") {
+    min-width: 50%;
+  }
 }
 
 p {

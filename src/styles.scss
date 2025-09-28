@@ -39,7 +39,7 @@ body {
 
 .primary-container {
   background-color: white;
-  margin: 10% auto;
+  margin: 5rem auto;
   padding: 0 0 2rem;
   box-sizing: border-box;
   border-radius: 1rem;
@@ -54,18 +54,16 @@ body {
   @include respond-to('large-tablet') {
     width: 70%;
     height: auto;
-    margin: 5rem auto;
+    margin: 2rem auto;
   }
 
   @include respond-to('tablet') {
     width: 80%;
     height: auto;
-    margin: 3rem auto;
   }
 
   @include respond-to('mobile') {
     width: 90%;
     height: auto;
-    margin: 1rem auto;
   }
 }
