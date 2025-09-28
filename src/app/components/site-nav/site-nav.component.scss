@@ -1,0 +1,19 @@
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: .5rem 0 .5rem;
+}
+
+mat-divider {
+    height: 1.75rem;
+    background-color: var(--themeTextGrey);
+}
+
+button {
+    font-size: var(--linkFontSize);
+    text-decoration: none;
+    margin: .75rem .5rem;
+    padding: 4px;
+    color: var(--themeTextGrey) !important;
+}

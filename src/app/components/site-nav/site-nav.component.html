@@ -1,0 +1,14 @@
+<nav>
+  @if(!isAuthenticated){
+  <button mat-button [routerLink]="['/authorize']" [queryParams]="{view: 'login'}">Login</button>
+  <mat-divider [vertical]="true"></mat-divider>
+  <button mat-button [routerLink]="['/authorize']" [queryParams]="{view: 'register'}">Register</button>
+  @if(hasLocallyStoredBooks){
+  <mat-divider [vertical]="true"></mat-divider>
+  <button mat-button [routerLink]="['/guest-book-list']">Book List</button>
+  } } @if(isAuthenticated){
+  <button mat-button [routerLink]="['/my-library']">My Book List</button>
+  <mat-divider [vertical]="true"></mat-divider>
+  <button mat-button (click)="logMeOut()">Logout</button>
+  }
+</nav>

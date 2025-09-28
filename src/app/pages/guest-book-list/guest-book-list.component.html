@@ -1,0 +1,44 @@
+<div class="primary-container">
+  <h1><span id="title-span">Guest</span> Library</h1>
+  <app-site-nav></app-site-nav>
+  <p>Select a title to read to its synopsis.</p>
+  <div id="list-grid">
+    @if(myPaginatedBooks.length === 0){
+    <div class="result-msg">
+      <p>No books in your list yet!</p>
+    </div>
+    } @for(myPaginatedBook of myPaginatedBooks; track myPaginatedBook){
+    <mat-card id="list-card">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <a [href]="myPaginatedBook['link_to_more']" target="_blank"
+            ><img
+              [src]="myPaginatedBook['cover_url'] || 'assets/default-cover.png'"
+              alt="Book Cover"
+          /></a>
+        </div>
+      </mat-card-header>
+      <mat-card-content
+        ><mat-card-title>{{ myPaginatedBook.title }}</mat-card-title>
+        <mat-card-subtitle>{{ myPaginatedBook.author }}</mat-card-subtitle>
+        <p>Published:{{ myPaginatedBook['year_published'] }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="removeBook(myPaginatedBook.id)">
+          Remove from List
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    }
+  </div>
+  @if(guestBooks){
+  <mat-paginator
+    [length]="guestBooks.length"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
+  }
+  <button mat-button routerLink="/home">Back to search</button>
+</div>
