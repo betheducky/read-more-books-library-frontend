@@ -54,6 +54,7 @@
                   "maximumError": "4kb"
                 }
               ],
+              "baseHref": "/book-search-app/",
               "fileReplacements": [{
                 "replace": "src/environments/environment.ts",
                 "with": "src/environments/environment.prod.ts"
