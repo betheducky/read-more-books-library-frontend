@@ -55,6 +55,18 @@ Navigate to `http://localhost:4200/` or your specified local development server 
 
 ---
 
+## Deployment
+Test the app live [here.](https://arenbruce.com/book-search-app/home)
+
+---
+
+## Roadmap (future updates and project vision)
+- Validation errors on login and registration forms
+- Pop-up option to sync guest booklists with logged-in user data on log-in
+- Implement password reset via email
+
+---
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
