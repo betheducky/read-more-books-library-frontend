@@ -1,26 +1,58 @@
-# ReadMoreBooksLibrary
+# 📚 ReadMoreBooksLibrary (Frontend)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.0.
+## Overview
+A responsive Angular web app that allows users to **search for books**, **register/login**, and **save their favorite books** to a personalized booklist. Built with Angular and connected to a Laravel backend API.
 
-## Development server
+## Features
+- Search for books using the integrated API
+- Register, log in, and manage user sessions
+- Save and view books in your account booklist
+- Guest mode for trying the app before registration
+- Responsive UI styled with Angular Material
+- Authentication handled via Laravel Sanctum
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## Tech Stack
+- **Frontend:** Angular 17, TypeScript
+- **UI Library:** Angular Material
+- **State Management:** Services and localStorage
+- **Backend API:** Laravel (Fly.io)
+- **Auth:** Laravel Sanctum (CSRF + Session-based)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## Local Setup
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### 1. Clone the repository
+```bash
+git clone https://github.com/betheducky/read-more-books-library-frontend.git
+cd read-more-books-library-frontend
+```
 
-## Running unit tests
+### 2. Install dependencies
+```bash
+npm install
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### 3. Set environment variables
+In src/environment/environments.ts:
 
-## Running end-to-end tests
+```bash
+export const environment = {
+  production: false,
+  apiUrl: 'https://book-search-backend.fly.dev' // or your local backend server URL
+};
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### 4. Start the development server
+```bash
+ng serve
+```
+
+Navigate to `http://localhost:4200/` or your specified local server URL. The application will automatically reload if you change any of the source files.
+
+---
 
 ## Further help
 
