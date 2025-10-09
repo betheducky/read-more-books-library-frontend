@@ -36,12 +36,13 @@ npm install
 ```
 
 ### 3. Set environment variables
-In src/environment/environments.ts:
+In src/environments/environment.ts:
 
 ```bash
 export const environment = {
-  production: false,
-  apiUrl: 'https://book-search-backend.fly.dev' // or your local backend server URL
+    production: false,
+    baseUrl: 'https://book-search-backend.fly.dev',
+    apiUrl: 'https://book-search-backend.fly.dev/api'
 };
 ```
 
@@ -50,7 +51,7 @@ export const environment = {
 ng serve
 ```
 
-Navigate to `http://localhost:4200/` or your specified local server URL. The application will automatically reload if you change any of the source files.
+Navigate to `http://localhost:4200/` or your specified local development server URL. The application will automatically reload if you change any of the source files.
 
 ---
 
